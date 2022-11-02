@@ -1,14 +1,15 @@
 //Esta bien editar la lista a mostrar y la de "backup" para mostrar?
 //Repasar flujo de recuperacion de vista con el filter
-//No puedo añadir imagenes externas al src?
 
+//No puedo añadir imagenes externas al src? Me da error de que no son validas las rutas relativas
+//import LogoImg from '../public/logo192.png'
 import './App.css';
 import foods from './foods.json';
 import { useState } from 'react';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 import Search from './components/Search';
-import LogoImg from './logo192.png'
+import logo from './logo.svg';
 
 import { Button } from 'antd';
 
@@ -25,12 +26,14 @@ function App() {
     const copy = [...foodList];
     copy.push(newFood);
     setFoodList(copy);
+
+
   };
 
   const filterFood = (filterQuery) => {
     console.log(filterQuery);
     const filteredfood = foodList.filter((eachFood) => {
-      return eachFood.name.startsWith(filterQuery);
+      return eachFood.name.toLowerCase().startsWith(filterQuery.toLowerCase());
     });
     setFoodListToShow(filteredfood);
   };
@@ -93,7 +96,7 @@ function App() {
         :
         <div>
         <p>Oops! There is no more content to show :(</p>
-        <img src={LogoImg} alt="" />
+        <img src={logo} className="App-logo" alt="logo" />
         </div>
         }
       </div>
