@@ -27,7 +27,9 @@ function App() {
     copy.push(newFood);
     setFoodList(copy);
 
-
+    const copy2 = [...foodList];
+    copy2.push(newFood);
+    setFoodListToShow(copy);
   };
 
   const filterFood = (filterQuery) => {
